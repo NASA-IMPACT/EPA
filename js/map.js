@@ -31,7 +31,7 @@ function putLayer( year,category){
     if (!map.getSource("states")){
     map.addSource('states', {
         type: 'geojson',
-        data: 'data/yearly.geojson'
+        data: 'https://test-epa-emissions.s3.us-east-2.amazonaws.com/epa/data/yearly.geojson'
       });
     }
     if (map.getLayer("epa")){map.removeLayer("epa")}
