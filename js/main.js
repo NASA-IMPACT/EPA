@@ -22,8 +22,9 @@ state.addEventListener("change",(e)=>{
 title.addEventListener("change",(e)=>{
     
     d3.csv("data/change.csv").then(function (data) {
-        lineChart(data,state.value, title.value);
         data = data.filter(d => d.State === state.value);
+        lineChart(data,state.value, title.value);
+        
     });
     putLayer(year.value, title.value);
 });
