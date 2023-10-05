@@ -13,14 +13,14 @@ var svgB = d3.select("#barChart")
 .attr("transform",
     "translate(" + marginB.left + "," + marginB.top + ")");
 
-function barChart(yearly, state){
+function barChart(yearly, state, title){
     svgB.selectAll("*").remove();
     var minTotalEmissions = d3.min(yearly, d => parseInt(d.total));
     var yearly = yearly.map(function(d) {
         return {
             Year: d.Year,
             total: d.total,
-            diff: d.total - minTotalEmissions + 10000
+            diff: d.total - minTotalEmissions + 1000
         };
     });
 
@@ -32,7 +32,7 @@ function barChart(yearly, state){
         .attr("text-anchor", "middle")
         .style("font-size", "18px")
         .style("font-weight", "bold")
-        .text("Yearly Total Emissions "+ state); 
+        .text("Yearly "+ title+ " Emissions "+ state); 
 
     // Add X axis
     var x = d3.scaleLinear()
