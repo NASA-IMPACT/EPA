@@ -14,25 +14,16 @@ map.doubleClickZoom.disable();
 map.touchZoomRotate.disable();
 
 var colorStops = ["#000000", "#222", "#ffc300", "#ff8d19", "#ff5733", "#ff2e00"]; 
-const year = document.getElementById("yearSelect1");
-const title = document.getElementById("titleSelect");
-
-year.addEventListener("change",(e)=>{
-    putLayer(year.value, title.value);
-});
-title.addEventListener("change",(e)=>{
-    putLayer(year.value, title.value);
-});
-
-
 
 function putLayer( year,category){
-
+    const heading = document.getElementById("map-title");
+    heading.innerHTML =  category +" : "+ year;
     if (!map.getSource("states")){
     map.addSource('states', {
         type: 'geojson',
         data: 'https://test-epa-emissions.s3.us-east-2.amazonaws.com/epa/data/yearly.geojson'
       });
+      console.log(map.getSource("states"))
     }
     if (map.getLayer("epa")){map.removeLayer("epa")}
     map.addLayer({
@@ -55,10 +46,11 @@ function putLayer( year,category){
         ['==', 'Title', category]
       ]  
     });
+    console.log("here");
 }
 
 map.on("style.load", function () {
-putLayer("2020","Total Other (annual)");
+putLayer("2020","Total Methane (annual)");
 });
 
 map.on("click","epa", (e)=>{
