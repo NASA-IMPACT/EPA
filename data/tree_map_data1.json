@@ -1,0 +1,170 @@
+{
+  "name": "TotalEmissions",
+  "children": [
+    {
+      "name": "Agriculture",
+      "children": [
+        {
+          "name": "Enteric Fermentation (3A)",
+          "value": 762531448.8519795,
+          "shortName": "Enteric Fermentation"
+        },
+        {
+          "name": "Field Burning of Agricultural Residues* (3F)",
+          "value": 1883741.05216366,
+          "shortName": "Field Burning"
+        },
+        {
+          "name": "Manure Management (3B)",
+          "value": 252985097.81535345,
+          "shortName": "Manure"
+        },
+        {
+          "name": "Rice Cultivation (3C)",
+          "value": 64828262.16811659,
+          "shortName": "Rice"
+        }
+      ]
+    },
+    {
+      "name": "Coal",
+      "children": [
+        {
+          "name": "Abandoned Underground Coal Mines (1B1a)",
+          "value": 27713341.5964128,
+          "shortName": "Abandoned Underground"
+        },
+        {
+          "name": "Surface Coal Mining (1B1a)",
+          "value": 44424636.8382976,
+          "shortName": "Surface"
+        },
+        {
+          "name": "Underground Coal Mining (1B1a)",
+          "value": 205638019.2232243,
+          "shortName": "Underground"
+        }
+      ]
+    },
+    {
+      "name": "Natural Gas Systems",
+      "children": [
+        {
+          "name": "Distribution (1B2b)",
+          "value": 62035132.04604928,
+          "shortName": "Distribution"
+        },
+        {
+          "name": "Exploration (1B2b)",
+          "value": 6523976.537986351,
+          "shortName": "Exploration"
+        },
+        {
+          "name": "Post Meter (annual)",
+          "value": 44381609.90273536,
+          "shortName": "Post Meter"
+        },
+        {
+          "name": "Processing (1B2b)",
+          "value": 46924554.12228096,
+          "shortName": "Processing"
+        },
+        {
+          "name": "Production (1B2b)",
+          "value": 397589281.39132416,
+          "shortName": "Production"
+        },
+        {
+          "name": "Transmission & Storage (1B2b)",
+          "value": 155864684.62920704,
+          "shortName": "Transmission-Storage"
+        }
+      ]
+    },
+    {
+      "name": "Others",
+      "children": [
+        {
+          "name": "Abandoned Oil and Gas Wells (1B2a & 1B2b)",
+          "value": 29846635.85596618,
+          "shortName": "Abandoned Oil, Gas Wells"
+        },
+        {
+          "name": "Ferroalloy Production (2C2)",
+          "value": 834279.07534848,
+          "shortName": "Ferroalloy"
+        },
+        {
+          "name": "Mobile Combustion (1A)",
+          "value": 10221571.00904448,
+          "shortName": "Mobile Combustion"
+        },
+        {
+          "name": "Petrochemical Production (2B8)",
+          "value": 838231.6723712,
+          "shortName": "Petrochemical"
+        },
+        {
+          "name": "Stationary combustion (1A)",
+          "value": 35628851.67497216,
+          "shortName": "Stationary combustion"
+        }
+      ]
+    },
+    {
+      "name": "Petroleum Systems",
+      "children": [
+        {
+          "name": "Exploration* (1B2a)",
+          "value": 13803433.899055934,
+          "shortName": "Exploration*"
+        },
+        {
+          "name": "Production (1B2a)",
+          "value": 138906644.05956608,
+          "shortName": "Production*"
+        },
+        {
+          "name": "Refining (1B2a)",
+          "value": 3204889.38102848,
+          "shortName": "Refining"
+        },
+        {
+          "name": "Transport (1B2a)",
+          "value": 594997.929786055,
+          "shortName": "Transport"
+        }
+      ]
+    },
+    {
+      "name": "Waste",
+      "children": [
+        {
+          "name": "Composting (5B1)",
+          "value": 9545716.01563648,
+          "shortName": "Composting"
+        },
+        {
+          "name": "Domestic Wastewater Treatment & Discharge (5D)",
+          "value": 53449574.02284032,
+          "shortName": "Domestic"
+        },
+        {
+          "name": "Industrial Landfills (5A1)",
+          "value": 64937628.23797632,
+          "shortName": "Industrial Landfills"
+        },
+        {
+          "name": "Industrial Wastewater Treatment & Discharge (5D)",
+          "value": 26282010.66778782,
+          "shortName": "Industrial"
+        },
+        {
+          "name": "Municipal Solid Waste (MSW) Landfills (5A1)",
+          "value": 407622946.9929472,
+          "shortName": "Municipal"
+        }
+      ]
+    }
+  ]
+}

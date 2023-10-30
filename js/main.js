@@ -9,8 +9,8 @@ year.addEventListener("change",(e)=>{
 state.addEventListener("change",(e)=>{
     pie(state.value,year.value);
     d3.csv("data/statewiseYearlyTotal.csv").then(function (data){
-        data = data.filter(d => d.State == state.value && d.Title== title.value);
-        barChart(data,state.value,title.value);
+        data = data.filter(d => d.State == state.value);
+        barChart(data,state.value);
     
     });
     d3.csv("data/change.csv").then(function (data) {
@@ -20,14 +20,16 @@ state.addEventListener("change",(e)=>{
 });
 
 title.addEventListener("change",(e)=>{
-    d3.csv("data/statewiseYearlyTotal.csv").then(function (data){
-        data = data.filter(d => d.State == state.value && d.Title== title.value);
-        barChart(data,state.value,title.value);
-    
-    });
     putLayer(year.value, title.value);
+    d3.csv("data/change.csv").then(function (data) {
+        data = data.filter(d => d.State === state.value);
+        lineChart(data,state.value, title.value);
+    });
 });
 
+// year.addEventListener("change",(e)=>{
+//     putLayer(year.value, title.value);
+// });
 
 function pie(state, year){
 d3.csv("data/yearly_categories.csv").then(function (data) {
@@ -47,8 +49,8 @@ d3.csv("data/yearly_categories.csv").then(function (data) {
 });
 
 d3.csv("data/statewiseYearlyTotal.csv").then(function (data){
-    const filteredData = data.filter(d => d.State ==="All" && d.Title== title.value);
-    barChart(filteredData,"All",title.value );
+    const filteredData = data.filter(d => d.State ==="All");
+    barChart(filteredData,"All");
 
 });
 
