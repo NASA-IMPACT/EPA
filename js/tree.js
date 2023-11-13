@@ -53,12 +53,13 @@ function plotTree(data, state, year) {
       const minHeight = 20;
       const maxFont = 50;
       const padding = 2;
+      const percentage = ((d.data.value / d.parent.value) * 100).toFixed(2);
     
       if (d.x1 - d.x0 > minWidth && d.y1 - d.y0 > minHeight) {
         const textWidth = d.x1 - d.x0;
         const textHeight = d.y1 - d.y0;
         const availableWidth = textWidth * (1 - padding / 100);
-        const availableHeight = textHeight * (1 -padding / 100);
+        const availableHeight = textHeight * (1 - padding / 100);
     
         const fontScale = d3.scaleLinear()
           .domain([minWidth, Math.min(width, height)])
@@ -78,6 +79,8 @@ function plotTree(data, state, year) {
           .attr("font-size", fontSize)
           .attr("fill", "white");
     
+        let spaceNeeded = true; // Flag to check if a space is needed between percentage and words
+    
         words.forEach(word => {
           const testLine = line ? `${line} ${word}` : word;
           const testLength = testLine.length * (fontSize / 2);
@@ -94,10 +97,14 @@ function plotTree(data, state, year) {
           }
           if ((line + word).length * (fontSize / 2) <= availableWidth) {
             line = line ? `${line} ${word}` : word;
+            spaceNeeded = true; // Space is needed if a word fits
           }
         });
     
         if (line) {
+          if (spaceNeeded) {
+            line += " ...";
+          }
           text.append("tspan")
             .text(line)
             .attr("x", d.x0 + availableWidth * 0.02)
@@ -105,9 +112,23 @@ function plotTree(data, state, year) {
             .attr("y", yStart);
         }
     
+        // Percentage Text Below Short Names
+        const percentageFontSize = 0.5 * fontSize; // Adjust the font size as needed
+        const percentageOffset = lineHeight + 6; // Distance between short name and percentage
+    
+        text.append("tspan")
+          .text("("+`${percentage}%`+")")
+          .attr("x", d.x0 + availableWidth * 0.02)
+          .attr("dy", percentageOffset)
+          .attr("font-size", percentageFontSize)
+          .attr("fill", "white");
+    
         text.style("visibility", "visible");
       }
     });
+    
+    
+    
 
     function showTooltip(event, d) {
       const percentage = ((d.data.value / d.parent.value) * 100).toFixed(2);
