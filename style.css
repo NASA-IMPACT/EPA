@@ -31,8 +31,18 @@ header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-    padding: 20px;
+    padding: 10px;
+    text-align: center;
 }
+#treeChart {
+    width: 100%; /* Adjust the width as needed */
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
 
 .chart {
     background-color: #fff;

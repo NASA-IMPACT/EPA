@@ -7,6 +7,7 @@ year.addEventListener("change",(e)=>{
     putLayer(year.value, title.value);
     makeTree(state.value, year.value);
 });
+
 state.addEventListener("change",(e)=>{
     pie(state.value,year.value);
     makeTree(state.value, year.value);
@@ -19,6 +20,7 @@ state.addEventListener("change",(e)=>{
         data = data.filter(d => d.State === state.value);
         lineChart(data,state.value,title.value)
     });
+    //d3.selectAll(".shortNameText").style("visibility", "hidden");
 });
 
 title.addEventListener("change",(e)=>{
