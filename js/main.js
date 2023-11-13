@@ -5,9 +5,11 @@ const title = document.getElementById("titleSelect");
 year.addEventListener("change",(e)=>{
     pie(state.value,year.value);
     putLayer(year.value, title.value);
+    makeTree(state.value, year.value);
 });
 state.addEventListener("change",(e)=>{
     pie(state.value,year.value);
+    makeTree(state.value, year.value);
     d3.csv("data/statewiseYearlyTotal.csv").then(function (data){
         data = data.filter(d => d.State == state.value);
         barChart(data,state.value);
@@ -30,6 +32,40 @@ title.addEventListener("change",(e)=>{
 // year.addEventListener("change",(e)=>{
 //     putLayer(year.value, title.value);
 // });
+function makeTree(targetState, targetYear){
+    var jsonData = {
+        "name": "TotalEmissions",
+        "children": []
+      };
+      d3.csv("data/to_tree.csv").then(function(data) {
+        console.log("Data loaded:", data);
+
+        if (Array.isArray(data)) {
+          var filteredData = data.filter(function(row) {
+            return row.State === targetState && row.Year === targetYear;
+          });
+        }
+          filteredData.forEach(function(row) {
+            var categoryGroup = jsonData.children.find(function(category) {
+              return category.name === row.category;
+            });
+
+            if (!categoryGroup) {
+              categoryGroup = {
+                name: row.category,
+                children: []
+              };
+              jsonData.children.push(categoryGroup);
+            }
+            categoryGroup.children.push({
+              name: row.Title,
+              value: +row.TotalEmissions,
+              shortName: row.shortName
+            });
+          });
+          plotTree(jsonData, targetState, targetYear);
+        });
+}
 
 function pie(state, year){
 d3.csv("data/yearly_categories.csv").then(function (data) {
@@ -58,6 +94,7 @@ d3.csv("data/change.csv").then(function (data) {
     data = data.filter(d => d.State === "All");
     lineChart(data,"All","Total Methane (annual)");
 });
+makeTree("All","2020");
 
 
 
