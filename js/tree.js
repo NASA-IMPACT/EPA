@@ -78,39 +78,37 @@ function plotTree(data, state, year) {
           .attr("y", yStart)
           .attr("font-size", fontSize)
           .attr("fill", "white");
-    
-        let spaceNeeded = true; // Flag to check if a space is needed between percentage and words
-    
-        words.forEach(word => {
-          const testLine = line ? `${line} ${word}` : word;
-          const testLength = testLine.length * (fontSize / 2);
-          if (testLength > availableWidth) {
-            if (line) {
-              text.append("tspan")
-                .text(line + "...")
-                .attr("x", d.x0 + availableWidth * 0.02)
-                .attr("dy", lineHeight)
-                .attr("y", yStart);
-              return; // exit loop
+          let spaceNeeded = true; // Flag to check if a space is needed between percentage and words
+          let ellipsisNeeded = false; // Flag to check if ellipsis is needed
+        
+          words.forEach(word => {
+            const testLine = line ? `${line} ${word}` : word;
+            const testLength = testLine.length * (fontSize / 2);
+            if (testLength > availableWidth) {
+              if (line) {
+                text.append("tspan")
+                  .text(line + "...")
+                  .attr("x", d.x0 + availableWidth * 0.02)
+                  .attr("dy", lineHeight)
+                  .attr("y", yStart);
+                ellipsisNeeded = true;
+                return; // exit loop
+              }
+              line = ''; // Reset for the remaining words
             }
-            line = ''; // Reset for the remaining words
+            if ((line + word).length * (fontSize / 2) <= availableWidth) {
+              line = line ? `${line} ${word}` : word;
+              spaceNeeded = true; // Space is needed if a word fits
+            }
+          });
+        
+          if (line && !ellipsisNeeded) {
+            text.append("tspan")
+              .text(line)
+              .attr("x", d.x0 + availableWidth * 0.02)
+              .attr("dy", lineHeight)
+              .attr("y", yStart);
           }
-          if ((line + word).length * (fontSize / 2) <= availableWidth) {
-            line = line ? `${line} ${word}` : word;
-            spaceNeeded = true; // Space is needed if a word fits
-          }
-        });
-    
-        if (line) {
-          if (spaceNeeded) {
-            line += " ...";
-          }
-          text.append("tspan")
-            .text(line)
-            .attr("x", d.x0 + availableWidth * 0.02)
-            .attr("dy", lineHeight)
-            .attr("y", yStart);
-        }
     
         // Percentage Text Below Short Names
         const percentageFontSize = 0.5 * fontSize; // Adjust the font size as needed
